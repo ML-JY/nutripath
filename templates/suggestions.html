@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">MEAL SUGGESTIONS</p><h1>{% if selected_cuisine %}{{ selected_cuisine }}-inspired meal ideas.{% else %}Nutritious ideas from many kitchens.{% endif %}</h1><p class="page-intro">Four example plates for each cuisine. Use them as inspiration, then build your own plate with the calculator.</p></div><a class="text-link" href="/ingredients">Choose ingredients ↗</a></div>
+{% for cuisine, dishes in meals.items() %}<section class="panel suggestion-section"><div class="section-title"><div><p class="eyebrow">{{ cuisine|upper }}</p><h2>{{ cuisine }}-inspired meals</h2></div><span class="mini-icon">✦</span></div><div class="suggestion-grid">{% for dish in dishes %}<article class="suggestion-card"><span class="catalog-icon" aria-hidden="true">◒</span><h3>{{ dish }}</h3><p>Example balance: vegetables + a protein or legume + a high-fiber carbohydrate. Adjust portions to your needs.</p><span class="evidence-tag">Educational example</span></article>{% endfor %}</div></section>{% endfor %}
+<p class="data-note">These are cuisine-inspired examples, not claims about what every person or culture “should” eat. Check the nutrition calculator and the Cooking science page for portion and method context. Educational research demo only.</p>
+{% endblock %}

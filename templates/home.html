@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy"><p class="eyebrow">THE NUTRIPATH KITCHEN</p>
+    <h1>Good food.<br>A little science.<br><em>A fresh perspective.</em></h1>
+    <p class="lead">What connects the food on your plate to the way your body works? Explore the ingredients, discover the science, and find something lovely to cook.</p>
+    <a class="button" href="/ingredients">Build a meal <span>↗</span></a>
+    <p class="hero-note">No DNA upload. No calorie counting. Just curiosity.</p>
+  </div>
+  <figure class="hero-art"><img src="{{ url_for('static', filename='food-journal.png') }}" alt="Gouache illustration of a rice bowl with tofu, leafy greens, broccoli and carrots, beside ginger and wooden chopsticks."><figcaption>A few familiar ingredients. A world of connections.</figcaption></figure>
+</section>
+<section class="how-it-works">
+  <div class="section-title"><p class="eyebrow">A SIMPLE PLACE TO START</p><h2>From your curiosity to your kitchen.</h2></div>
+  <div class="steps"><article><span class="step-number">01</span><h3>Choose your foods.</h3><p>Select the ingredients you actually want to combine from the searchable shelf.</p></article><article><span class="step-number">02</span><h3>See the numbers.</h3><p>The calculator totals calories, protein, carbohydrates, fiber, fats, and available vitamin metadata.</p></article><article><span class="step-number">03</span><h3>Understand the gaps.</h3><p>A transparent score highlights food-group variety and suggests what may be missing.</p></article></div>
+</section>
+<section class="cuisine-section"><div class="cuisine-heading"><p class="eyebrow">SEVEN WAYS TO THE TABLE</p><h2>A world of little kitchens.</h2><p>Different pantries. Familiar traditions. Something new to try.</p></div><div class="cuisine-gallery">
+{% for cuisine, info in cuisine_info.items() %}
+<a class="cuisine-card" href="/suggestions?cuisine={{ cuisine|urlencode }}"><span class="food-art" role="img" aria-label="Illustrated {{ cuisine }} food inspiration" style="--art-x:{{ (info.index % 4) * 100 / 3 }}%;--art-y:{{ (info.index // 4) * 100 }}%"></span><h3>{{ cuisine }}</h3><p>{{ info.note }}</p><span class="card-arrow" aria-hidden="true">↗</span></a>
+{% endfor %}
+<a class="cuisine-card pantry-card" href="/ingredients"><span class="food-art" role="img" aria-label="Illustrated vegetables, beans and grains" style="--art-x:100%;--art-y:100%"></span><h3>The pantry</h3><p>Explore the ingredient families</p><span class="card-arrow" aria-hidden="true">↗</span></a></div></section>
+<section class="science-note"><span class="note-symbol">✳</span><div><p class="eyebrow">A NOTE ON THE SCIENCE</p><h2>Food is personal. This model is still an experiment.</h2><p>NutriPath combines locally stored USDA nutrition metadata with a simple, explainable meal score. Values marked pending need further curation and are not a measure of what your body needs.</p></div></section>
+{% endblock %}

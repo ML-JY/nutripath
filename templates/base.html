@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore an educational model of food compounds, genetic variants, and metabolic pathways.">
+  <title>NutriPath · Nutrigenomic Nutrition Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body data-page="{{ page }}">
+<header><a class="brand" href="/">NutriPath<span>FOOD, SCIENCE & A LITTLE CURIOSITY</span></a><span class="header-note">A kitchen for curious minds.</span></header>
+<nav aria-label="Main navigation">
+  {% for path, label in [('home','Our idea'),('ingredients','Choose ingredients'),('plate','Build your plate'),('cooking','Cooking science'),('suggestions','Meal suggestions'),('journey','Nutrient journey'),('principles','How the science works')] %}
+  <a href="{{ '/' if path == 'home' else '/' + path }}" {% if page == path %}aria-current="page"{% endif %}>{{ label }}</a>
+  {% endfor %}
+</nav>
+<main>{% block content %}{% endblock %}</main>
+<footer role="note"><strong>RESEARCH ONLY</strong> {{ disclaimer }}</footer>
+</body></html>
